@@ -1,12 +1,11 @@
 package my.sinewave.diary.parser;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.log4j.Log4j2;
 import my.sinewave.diary.DiaryRatings;
+import my.sinewave.diary.parser.feign.GoogleDriveFeignClient;
 import org.springframework.stereotype.Component;
 
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
 import java.time.LocalDate;
 import java.util.Map;
 import java.util.TreeMap;
@@ -15,14 +14,17 @@ import java.util.regex.Pattern;
 
 @Component
 @RequiredArgsConstructor
+@Log4j2
 public class DiaryParserImpl implements DiaryParser {
 
     //TODO case sensitive
     private static final String RATING_PREFIX = "ocena: ";
     private static final Pattern pattern = Pattern.compile(RATING_PREFIX + "\\d+(\\.\\d)*");
+    private final GoogleDriveFeignClient googleDriveClient;
 
-    public DiaryRatings parse(String fileName) throws IOException {
-        final Matcher matcher = pattern.matcher(getContent(fileName));
+    public DiaryRatings parse(String fileName) {
+        final String content = googleDriveClient.getContent(fileName).content();
+        final Matcher matcher = pattern.matcher(content);
         Map<LocalDate, Float> ratingByDay = new TreeMap<>();
         final int month = getMonth(fileName);
         int counter = 1;
@@ -37,9 +39,6 @@ public class DiaryParserImpl implements DiaryParser {
         return Integer.parseInt(fileName.split(".txt")[0]);
     }
 
-    private String getContent(String fileName) throws IOException {
-        return Files.readString(Path.of(fileName));
-    }
 
 }
 
