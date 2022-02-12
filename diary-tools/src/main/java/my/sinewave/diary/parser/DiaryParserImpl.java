@@ -1,4 +1,4 @@
-package my.sinewave.diary.service;
+package my.sinewave.diary.parser;
 
 import lombok.RequiredArgsConstructor;
 import my.sinewave.diary.DiaryRatings;
@@ -15,7 +15,8 @@ import java.util.regex.Pattern;
 
 @Component
 @RequiredArgsConstructor
-public class DiaryParser {
+public class DiaryParserImpl implements DiaryParser {
+
     //TODO case sensitive
     private static final String RATING_PREFIX = "ocena: ";
     private static final Pattern pattern = Pattern.compile(RATING_PREFIX + "\\d+(\\.\\d)*");

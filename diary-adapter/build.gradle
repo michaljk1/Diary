@@ -2,21 +2,21 @@ plugins {
     id 'java'
 }
 
-group 'my.sinewave.diary'
+group 'my.sinewave'
 version '0.0.1-SNAPSHOT'
-
 
 repositories {
     mavenCentral()
 }
 
 dependencies {
-    implementation 'org.springframework.boot:spring-boot-starter-validation:2.6.3'
+    implementation 'org.springframework.boot:spring-boot-starter-web:2.6.3'
 
     compileOnly group: 'org.projectlombok', name: 'lombok', version: lombokVersion
     annotationProcessor group: 'org.projectlombok', name: 'lombok', version: lombokVersion
 
-    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    implementation project(':diary-domain')
+
 }
 
 test {

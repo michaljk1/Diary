@@ -30,7 +30,8 @@ dependencies {
 	compileOnly group: 'org.projectlombok', name: 'lombok', version: lombokVersion
 	annotationProcessor group: 'org.projectlombok', name: 'lombok', version: lombokVersion
 
-	implementation project(':diary-domain')
+	implementation project(':diary-adapter')
+	implementation project(':diary-tools')
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
 

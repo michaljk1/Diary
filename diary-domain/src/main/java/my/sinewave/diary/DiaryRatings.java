@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 import static java.util.stream.Collectors.toList;
-
+//TODO walidacja
 public record DiaryRatings(List<Rating> ratings, Double average, AmplitudeStatistics amplitudeStatistics) {
 
 

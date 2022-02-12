@@ -1,3 +1,5 @@
 rootProject.name = 'diary'
 include 'diary-domain'
+include 'diary-tools'
+include 'diary-adapter'
 
