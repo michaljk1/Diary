@@ -19,12 +19,16 @@ public class AmplitudeStatisticsFactory {
                     return Rating.from(first.day(), second.value() - first.value());
                 }
         ).toList();
+        //TODO refactor
         Rating negative = ratingAmplitude.stream().min(Comparator.comparing(Rating::value)).orElse(Rating.from(LocalDate.now(), 0f));
         Rating positive = ratingAmplitude.stream().max(Comparator.comparing(Rating::value)).orElse(Rating.from(LocalDate.now(), 0f));
 
         return new AmplitudeStatistics(createAmplitude(negative), createAmplitude(positive));
     }
 
+    public static void main(String[] args) {
+        System.out.println("XD");
+    }
     private static Amplitude createAmplitude(Rating ratingAmplitude) {
         return new Amplitude(ratingAmplitude.day(), ratingAmplitude.day().plus(Period.ofDays(1)), ratingAmplitude.value());
     }

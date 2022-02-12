@@ -27,9 +27,10 @@ dependencies {
 
 	implementation group: 'org.postgresql', name: 'postgresql', version: postgresDriverVersion
 
-	compileOnly 'org.projectlombok:lombok'
-	annotationProcessor 'org.projectlombok:lombok'
+	compileOnly group: 'org.projectlombok', name: 'lombok', version: lombokVersion
+	annotationProcessor group: 'org.projectlombok', name: 'lombok', version: lombokVersion
 
+	implementation project(':diary-domain')
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
 

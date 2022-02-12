@@ -1,7 +1,6 @@
 package my.sinewave.diary.service;
 
 import lombok.RequiredArgsConstructor;
-import my.sinewave.diary.Amplitude;
 import my.sinewave.diary.AmplitudeStatistics;
 import my.sinewave.diary.DiaryRatings;
 import my.sinewave.diary.Rating;
