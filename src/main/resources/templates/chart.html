@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+</head>
+<body>
+<div v-if="data.myLabels">
+    <canvas id="myChart"></canvas>
+
+</div>
+<script>
+    var app = new Vue({
+        el: '#app',
+        data: {
+            myLabels: [],
+            myValues: []
+
+        },
+        created() {
+            fetch("http://127.0.0.1:8080/diary/")
+                .then(response => response.json())
+                .then(data => {
+                    this.myLabels = data.labels;
+                    this.myValues = data.data;
+                    let rating = data.average;
+                    console.log(this.myLabels);
+                    console.log(this.myValues);
+                    this.myValues.push(0)
+                    this.myValues.push(10)
+                    var chart = new Chart(document.getElementById('myChart').getContext('2d'), {
+                        type: 'line',
+                        data: {
+                            labels: this.myLabels,
+                            datasets: [{
+                                fill:false,
+                                label : 'Average: ' + rating,
+                                backgroundColor: 'rgb(255, 99, 132)',
+                                borderColor: 'rgb(255, 99, 132)',
+                                data: this.myValues
+                                ,min: 0,
+                                max: 10
+                            }]
+                        }
+                    });
+                })
+
+        }
+    });
+
+</script>
+</body>
+</html>
