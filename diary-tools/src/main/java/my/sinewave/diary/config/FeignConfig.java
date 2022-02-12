@@ -1,4 +1,4 @@
-package my.sinewave.config;
+package my.sinewave.diary.config;
 
 import my.sinewave.diary.parser.feign.GoogleDriveFeignClient;
 import org.springframework.cloud.openfeign.EnableFeignClients;
